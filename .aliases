@@ -18,3 +18,5 @@ alias pg_dump_ydealapp='pg_dump -U postgres -n ydealapp > ydealapp_$(date +"%Y-%
 
 alias bonu-front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
 alias bonu-admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
+
+alias eslint-unused="npx eslint . --rule "@typescript-eslint/no-unused-vars:error" -f stylish | awk '/@typescript-eslint\/no-unused-vars/ { print "\033[33m" prev "\033[0m"; print $0 } { prev = $0 }'"
