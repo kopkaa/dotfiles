@@ -1,4 +1,5 @@
 alias ls='ls -F --color=auto --show-control-chars'
+alias rm='rm -i'
 alias ll='ls -l -h'
 alias df="df -h"
 alias lt='ls --human-readable --size -1 -S --classify'
