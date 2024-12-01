@@ -79,4 +79,3 @@ This README documents the `.aliases` file included in your dotfiles. These alias
 | `gz`             | Compares original and gzipped file sizes.                                                    | Displays the compression ratio for a file.                                  |
 | `getcertnames`   | Uses OpenSSL to retrieve SSL certificate details for a domain.                               | Shows the Common Name (CN) and Subject Alternative Names (SANs) of a cert.  |
 | `tre`            | `tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX`                        | Displays a tree structure of directories with hidden files and color.       |
-
