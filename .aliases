@@ -23,3 +23,5 @@ alias bonu-admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && 
 
 alias pwd-win="cygpath -w $(pwd)"
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
+
+alias ssh_tunnel_ydeal="ssh -i ~/.ssh/id_rsa -L 5431:ydealapp.c7wm6qsoszk7.eu-central-1.rds.amazonaws.com:5432 ec2-user@ec2-63-176-52-54.eu-central-1.compute.amazonaws.com"
