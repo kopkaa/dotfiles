@@ -9,8 +9,7 @@ This README documents the `.aliases` file included in your dotfiles. These alias
 1. [General Aliases](#general-aliases)
 2. [Git Aliases](#git-aliases)
 3. [Project Navigation Aliases](#project-navigation-aliases)
-5. [Database Aliases](#database-aliases)
-6. [Windows-Specific Aliases](#windows-specific-aliases)
+4. [Windows-Specific Aliases](#windows-specific-aliases)
 
 ---
 
@@ -46,20 +45,13 @@ This README documents the `.aliases` file included in your dotfiles. These alias
 ---
 
 
-### Database Aliases
-
-| Alias              | Command                                                                                 | Description                             |
-|--------------------|-----------------------------------------------------------------------------------------|-----------------------------------------|
-| `pg_dump_ydealapp` | `pg_dump -U postgres -n ydealapp > ydealapp_$(date +"%Y-%m-%d").sql`                    | Backup the `ydealapp` database.         |
-
----
-
 ### Windows-Specific Aliases
 
 | Alias          | Command                                                                                   | Description                                      |
 |-----------------|-------------------------------------------------------------------------------------------|--------------------------------------------------|
 | `pwd-win`      | `cygpath -w $(pwd)`                                                                       | Convert the current directory to Windows format. |
 | `chrome-no-cors` | `"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"` | Open Chrome with disabled CORS. |
+| `npm-package-list` | `npm list -g --depth=0 > global-packages.txt` | List global npm packages to .txt file |
 
 ---
 
