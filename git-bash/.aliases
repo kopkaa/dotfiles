@@ -10,12 +10,15 @@ alias pr="cd ~/Documents/Projects"
 alias gitmail='git config user.email "kopkayan@outlook.cz"'
 
 
-
-alias bonu-front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
-alias bonu-admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
-
 alias pwd-win="cygpath -w $(pwd)"
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
 
 
+#----------------------------------------BONU----------------------------------------------#
+alias bonu-front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
+alias bonu-admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
+
+
+#----------------------------------------ICEWARP----------------------------------------------#
 alias iw-compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
+alias iw-api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
