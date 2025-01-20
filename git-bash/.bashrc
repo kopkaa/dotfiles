@@ -13,7 +13,7 @@ print_aliases() {
   printf "  %-15s -> %s\n" "gc" "git checkout"
   printf "  %-15s -> %s\n" "pr" "cd ~/Documents/Projects"
 
-  echo -e "\n\e[1;32m32mBonu:\e[0m"
+  echo -e "\n\e[1;32mBonu:\e[0m"
   printf "  %-15s -> %s\n" "bonu-front" "cd to Bonu frontend and run dev"
   printf "  %-15s -> %s\n" "bonu-admin" "cd to Bonu admin and run dev"
 
