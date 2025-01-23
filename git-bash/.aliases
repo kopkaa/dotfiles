@@ -15,13 +15,13 @@ alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --
 
 
 #----------------------------------------BONU----------------------------------------------#
-alias bonu-front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
-alias bonu-admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
+alias bonu:front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
+alias bonu:admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
 
 
 #----------------------------------------ICEWARP----------------------------------------------#
-alias iw-compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
-alias iw-api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
+alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
+alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
 
 #----------------------------------------DobraDrazba----------------------------------------------#
 alias drazba="cd /c/Users/janxh/Documents/Projects/sites/dobradrazba && npm run dev"
