@@ -4,14 +4,18 @@ alias ll='ls -l -h'
 alias df="df -h"
 alias lt='ls --human-readable --size -1 -S --classify'
 alias count_files='find . -type f | wc -l'
-alias gc="git checkout"
 alias tree="find . -print | sed -e 's;[^/]*/;|--;g' -e 's;--|;  |;g'"
 alias pr="cd ~/Documents/Projects"
-alias gitmail='git config user.email "kopkayan@outlook.cz"'
+
 
 
 alias pwd-win="cygpath -w $(pwd)"
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
+
+#---------------------------------------Git-----------------------------------------------#
+alias gc="git checkout"
+alias gundo="git reset HEAD~1 --mixed"
+alias gitmail='git config user.email "kopkayan@outlook.cz"'
 
 
 #----------------------------------------BONU----------------------------------------------#
