@@ -12,6 +12,7 @@ print_aliases() {
   printf "  %-15s -> %s\n" "chrome-no-cors" "Start chrome without cors "
   printf "  %-15s -> %s\n" "gc" "git checkout"
   printf "  %-15s -> %s\n" "pr" "cd ~/Documents/Projects"
+  printf "  %-15s -> %s\n" "edit-hosts" "Open /etc/hosts for editing"
 
   echo -e "\n\e[1;32mBonu:\e[0m"
   printf "  %-15s -> %s\n" "bonu:front" "cd to Bonu frontend and run dev"
