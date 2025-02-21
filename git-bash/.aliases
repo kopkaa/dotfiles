@@ -11,6 +11,7 @@ alias pr="cd ~/Documents/Projects"
 
 alias pwd-win="cygpath -w $(pwd)"
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
+alias firefox-no-cors='"C:\Program Files\Mozilla Firefox\firefox.exe" --disable-web-security'
 alias edit-hosts='subl "C:\Windows\System32\drivers\etc\hosts"'
 
 #---------------------------------------Git-----------------------------------------------#
