@@ -1,73 +1,137 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
-        {
-            "command": "openTabRenamer",
-            "id": "User.openTabRenamer",
-            "keys": "ctrl+alt+r"
-        }
-    ],
-    "defaultProfile": "{58323e22-98e4-4cdd-9244-2a2a5f510e55}",
-    "newTabMenu": 
-    [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
-    "profiles": 
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "actions": [
     {
-        "defaults": {},
-        "list": 
-        [
-            {
-                "colorScheme": "Dark+",
-                "font": 
-                {
-                    "face": "Fira Code Retina"
-                },
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
-            },
-            {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "Command Prompt"
-            },
-            {
-                "colorScheme": "Dark+",
-                "commandline": "C:\\Program Files\\Git\\bin\\bash.exe",
-                "cursorShape": "vintage",
-                "font": 
-                {
-                    "face": "Fira Code Retina",
-                    "size": 12
-                },
-                "guid": "{58323e22-98e4-4cdd-9244-2a2a5f510e55}",
-                "hidden": false,
-                "name": "Git bash",
-                "startingDirectory": "%USERPROFILE%/Documents/Projects"
-            },
-            {
-                "font": 
-                {
-                    "face": "Fira Code Retina"
-                },
-                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": true,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
-            }
-        ]
+      "command": "openTabRenamer",
+      "id": "User.openTabRenamer"
+    }
+  ],
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "defaultProfile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+  "keybindings": [
+    {
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+c"
     },
-    "schemes": [],
-    "themes": []
+    {
+      "id": "Terminal.FindText",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "Terminal.PasteFromClipboard",
+      "keys": "ctrl+v"
+    },
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "User.openTabRenamer",
+      "keys": "ctrl+alt+r"
+    }
+  ],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "profiles": {
+    "defaults": {},
+    "list": [
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": false,
+        "name": "Windows PowerShell"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\cmd.exe",
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": false,
+        "name": "Command Prompt"
+      },
+      {
+        "adjustIndistinguishableColors": "always",
+        "colorScheme": "One Half Dark",
+        "cursorShape": "vintage",
+        "font": {
+          "face": "Fira Code Retina",
+          "size": 12
+        },
+        "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+        "hidden": false,
+        "intenseTextStyle": "none",
+        "name": "Git Bash",
+        "source": "Git",
+        "startingDirectory": "%USERPROFILE%/Documents/Projects"
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": false,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      },
+      {
+        "commandline": "wsl.exe -d Ubuntu",
+        "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+        "hidden": false,
+        "name": "Ubuntu",
+        "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+      },
+      {
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "hidden": true,
+        "name": "Ubuntu",
+        "source": "Windows.Terminal.Wsl"
+      }
+    ]
+  },
+  "schemes": [
+    {
+      "name": "rose-pine-moon",
+
+      "cursorColor": "#59546d",
+      "selectionBackground": "#312f44",
+
+      "background": "#232136",
+      "foreground": "#e0def4",
+
+      "black": "#393552",
+      "blue": "#9ccfd8",
+      "cyan": "#ea9a97",
+      "green": "#3e8fb0",
+      "purple": "#c4a7e7",
+      "red": "#eb6f92",
+      "white": "#e0def4",
+      "yellow": "#f6c177",
+      "brightBlack": "#817c9c",
+      "brightBlue": "#9ccfd8",
+      "brightCyan": "#ea9a97",
+      "brightGreen": "#3e8fb0",
+      "brightPurple": "#c4a7e7",
+      "brightRed": "#eb6f92",
+      "brightWhite": "#e0def4",
+      "brightYellow": "#f6c177"
+    }
+  ],
+  "themes": [
+    {
+      "name": "rose-pine-moon",
+      "tab": {
+        "background": "#232136FF",
+        "showCloseButton": "always",
+        "unfocusedBackground": null
+      },
+      "tabRow": {
+        "background": "#393552FF",
+        "unfocusedBackground": "#908CAAFF"
+      },
+      "window": {
+        "applicationTheme": "dark",
+        "useMica": false
+      }
+    }
+  ]
 }
