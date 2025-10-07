@@ -33,3 +33,8 @@ alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm 
 
 #----------------------------------------DobraDrazba----------------------------------------------#
 alias drazba="cd /c/Users/janxh/Documents/Projects/sites/dobradrazba && npm run dev"
+
+
+#----------------------------------------Repilot----------------------------------------------#
+alias repilot:dev="cd /c/Users/janxh/Documents/Projects/sites/repilot && npm run dev"
+alias repilot:generate="docker exec -it php-1 php artisan lingua:generate"

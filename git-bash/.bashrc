@@ -24,7 +24,9 @@ print_aliases() {
   printf "  %-15s -> %s\n" "iw:api" "Start IceWarp API service"
   printf "  %-15s -> %s\n\n" "iw:mergeapi" "Generate new public api def and move to api service"
 
-  printf "  %-15s -> %s\n" "kubectl port-forward svc/configurations 50051:50051 -n migration" "k8s port forwarding"
+  echo -e "\n\e[1;32mRepilot:\e[0m"
+  printf "  %-15s -> %s\n" "repilot:dev" "cd to Repilot frontend and run dev"
+  printf "  %-15s -> %s\n" "repilot:generate" "Generate translations for repilot"
   
   echo -e "\n"
 }
