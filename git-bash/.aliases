@@ -37,4 +37,4 @@ alias drazba="cd /c/Users/janxh/Documents/Projects/sites/dobradrazba && npm run 
 
 #----------------------------------------Repilot----------------------------------------------#
 alias repilot:dev="cd /c/Users/janxh/Documents/Projects/sites/repilot && npm run dev"
-alias repilot:generate="docker exec -it php-1 php artisan lingua:generate"
+alias repilot:generate="docker exec -it repilot-php-1 php artisan lingua:generate"
