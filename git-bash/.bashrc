@@ -27,6 +27,7 @@ print_aliases() {
   echo -e "\n\e[1;32mRepilot:\e[0m"
   printf "  %-15s -> %s\n" "repilot:dev" "cd to Repilot frontend and run dev"
   printf "  %-15s -> %s\n" "repilot:generate" "Generate translations for repilot"
+    printf "  %-15s -> %s\n" "repilot:logs" "Show logs from PHP container"
   
   echo -e "\n"
 }
