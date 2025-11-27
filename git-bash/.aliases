@@ -30,7 +30,6 @@ alias bonu:admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && 
 alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
 alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
 alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm run merge && mv merged.yaml ../api-service'
-alias iw:kubedev='export KUBECONFIG=~/.kube/dev2-config.yaml'
 
 
 alias kube:dev2='export KUBECONFIG=~/.kube/dev2-config.yaml && kubectl config current-context'
