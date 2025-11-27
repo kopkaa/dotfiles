@@ -33,5 +33,3 @@ print_aliases() {
 }
 
 print_aliases
-
-alias gcl='gitlab-ci-local'
