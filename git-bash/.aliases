@@ -21,11 +21,6 @@ alias gundo="git reset HEAD~1 --mixed"
 alias gitmail='git config user.email "kopkayan@outlook.cz"'
 
 
-#----------------------------------------BONU----------------------------------------------#
-alias bonu:front="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/front && npm run dev"
-alias bonu:admin="cd /c/Users/janxh/Documents/Projects/sites/bonu/apps/admin && npm run dev"
-
-
 #----------------------------------------ICEWARP----------------------------------------------#
 alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
 alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
@@ -36,11 +31,9 @@ alias kube:dev2='export KUBECONFIG=~/.kube/dev2-config.yaml && kubectl config cu
 alias kube:stage='export KUBECONFIG=~/.kube/stage-config.yaml && kubectl config current-context'
 alias kube:local='unset KUBECONFIG && kubectl config current-context'
 
-#----------------------------------------DobraDrazba----------------------------------------------#
-alias drazba="cd /c/Users/janxh/Documents/Projects/sites/dobradrazba && npm run dev"
 
 
 #----------------------------------------Repilot----------------------------------------------#
 alias repilot:dev="cd /c/Users/janxh/Documents/Projects/sites/repilot && npm run dev"
 alias repilot:generate="docker exec -it repilot-php-1 php artisan lingua:generate"
-alias repilot:logs="docker compose exec php tail -f //code/storage/logs/laravel.log | grep --color=always -E "ERROR|$""
+alias repilot:logs='docker compose exec php tail -f //code/storage/logs/laravel.log | grep --color=always -E "ERROR|$"'
