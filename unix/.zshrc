@@ -101,3 +101,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+ZSHRC_DIR="${${(%):-%N}:A:h}"
+
+for file in "$ZSHRC_DIR"/.{aliases,functions}; do
+    [[ -r $file && -f $file ]] || continue
+    source "$file"
+done
+
+
+
+
+# # Run neofetch on terminal start
+# if command -v neofetch >/dev/null 2>&1; then
+#     neofetch
+# fi
+
+
