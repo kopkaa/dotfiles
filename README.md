@@ -15,4 +15,4 @@ ln -s ~/dotfiles/ssh/config ~/.ssh/config
 ```powershell
 New-Item -ItemType SymbolicLink `
   -Path "C:\Users\janxh\.bashrc" `
-  -Target "C:\Users\janxh\Documents\Projects\dotfiles\bash\.bashrc"
+  -Target "C:\Users\janxh\Documents\Projects\dotfiles\git-bash\.bashrc"
