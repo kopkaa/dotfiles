@@ -1,0 +1,17 @@
+---
+name: fix-bug
+description: Fix a bug based on its description
+disable-model-invocation: true
+---
+
+Fix the bug described in the following description, following our coding standards:
+
+$BUG_DESCRIPTION
+
+Steps to follow:
+
+1. Carefully read the bug description.
+2. Identify the cause of the bug and understand the expected behavior.
+3. Implement a fix in the code.
+4. Write tests to verify the fix and prevent regressions.
+5. Create a commit with a clear message explaining the fix.
