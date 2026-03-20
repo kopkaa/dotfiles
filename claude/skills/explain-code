@@ -1,13 +1,42 @@
 ---
 name: explain-code
-description: Explains code with visual diagrams and analogies. Use when explaining how code works, teaching about a codebase, or when the user asks "how does this work?"
+description: Explains code clearly and practically. Use when explaining how code works, specific parts of a codebase, or when the user asks "how does this work?"
+input:
+  code: The code snippet to explain
+  focus: Optional – specify what part or concept to focus on (e.g. "async logic", "this function", "error handling", "performance")
 ---
 
-When explaining code, always include:
+When explaining code, always:
 
-1. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
-2. **Walk through the code**: Explain step-by-step what happens
-3. **Highlight a gotcha**: What's a common mistake or misconception?
-4. **Alternatives**: What's a common alternatives for this, what are the best practices?x
+1. Explain WHAT the code does
+   - High-level summary first
+   - Then break into logical parts
 
-Keep explanations conversational. For complex concepts, use multiple alternatives.
+2. Explain HOW it works
+   - Step-by-step flow
+   - Mention important constructs (loops, async, closures, etc.)
+
+3. Explain WHY it is written this way
+   - What problem it solves
+   - Why this approach might have been chosen
+
+4. Call out important details
+   - Hidden complexity
+   - Side effects
+   - Edge cases
+
+5. Highlight a gotcha
+   - Common mistakes or misunderstandings
+   - Things that might break or confuse developers
+
+6. Suggest alternatives and best practices
+   - Cleaner / modern approaches
+   - Performance or readability improvements
+   - When you would choose a different pattern
+
+Guidelines:
+- Be conversational, not academic
+- Use real-world analogies only if helpful
+- Do NOT use diagrams
+- Focus on practical understanding for developers
+- If "focus" is provided, prioritize that area but still give brief context
