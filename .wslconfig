@@ -1,0 +1,3 @@
+[wsl2]
+memory=4GB   # Limit VM memory (adjust based on your system)
+processors=2 # Limit CPU usage
