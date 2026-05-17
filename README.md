@@ -78,8 +78,8 @@ Run `myhelp` in a Git Bash shell to see the alias list at any time
 | `chrome-no-cors` | Launch Chrome with web security disabled |
 | `edit-hosts` | Open `hosts` file in Sublime as admin |
 | `kube:dev2` / `kube:stage` / `kube:local` | Swap `KUBECONFIG` between contexts |
-| `iw:compose` / `iw:api` / `iw:mergeapi` | IceWarp project shortcuts |
-| `repilot:dev` / `repilot:generate` / `repilot:logs` | Repilot project shortcuts |
+| `iw:help` | List IceWarp project shortcuts (`iw:compose`, `iw:api`, `iw:mergeapi`) |
+| `repilot:help` | List Repilot project shortcuts (`repilot:dev`, `repilot:generate`, `repilot:logs`) |
 
 Functions available in Git Bash (`git-bash/.functions`):
 
