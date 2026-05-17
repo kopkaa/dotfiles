@@ -89,6 +89,62 @@ Functions available in Git Bash (`git-bash/.functions`):
 - `tre [path]` — `tree` with hidden files, ignoring `.git` / `node_modules`
 - `diff` — overrides system diff with `git diff --no-index --color-words`
 
+## Per-machine overrides
+
+Anything in this repo is shared across **all** machines. For per-host tweaks
+(different `git user.email` at work, a hostname-specific alias, a path that
+only exists on one laptop) use the **local override** pattern instead of
+forking the shared files.
+
+Three opt-in slots, each loaded only if the file exists on the current host:
+
+| Override file | Loaded by | Loaded when |
+|---|---|---|
+| `~/.bashrc.local` | `git-bash/.bashrc` | last, after `.aliases` + `.functions` |
+| `~/.zshrc.local` | `unix/.zshrc` | last, after `.aliases` + `.functions` |
+| `~/.gitconfig.local` | `.gitconfig` via `[include]` | always (git ignores missing path silently) |
+
+### How it works
+
+The shared rc files end with a guarded `source`:
+
+```bash
+[ -r "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"   # git-bash
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"  # zsh
+```
+
+Because they're sourced **last**, any alias/function/env-var defined in the
+local file wins over the shared definitions — last write wins in the shell.
+
+For git, `[include] path = ~/.gitconfig.local` does the same — later keys
+override earlier ones, so a `[user] email = …` in the local file replaces the
+shared one.
+
+### When to put something here vs. in the shared repo
+
+- **Shared repo** — anything you want on every machine (aliases, helper
+  functions, themes, default git config).
+- **`*.local`** — anything machine-specific: work vs. personal email,
+  hostname-dependent paths, secrets/tokens you don't want in git, one-off
+  experiments before promoting to the repo.
+
+### Example: work laptop with a different git identity
+
+```ini
+# ~/.gitconfig.local
+[user]
+    email = jan.hromadka@employer.com
+```
+
+```bash
+# ~/.zshrc.local
+export WORK_LAPTOP=1
+alias vpn='sudo openconnect vpn.employer.com'
+```
+
+The `*.local` files are **not tracked** — they live only in `$HOME` on each
+host. Nothing to gitignore (they aren't in the repo to begin with).
+
 ## Updating
 
 ```bash

@@ -11,3 +11,6 @@ for file in "$ZSHRC_DIR"/.{aliases,functions}; do
     [[ -r $file && -f $file ]] || continue
     source "$file"
 done
+
+# Per-machine overrides — not tracked, edit on this host only.
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

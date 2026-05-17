@@ -6,6 +6,9 @@ for file in "$DIR"/.{aliases,functions}; do
 done;
 unset file;
 
+# Per-machine overrides — not tracked, edit on this host only.
+[ -r "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
+
 myhelp() {
   echo -e "\n\e[1;34mAliases:\e[0m\n"
 
