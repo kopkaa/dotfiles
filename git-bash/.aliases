@@ -10,7 +10,7 @@ alias ..="cd .."
 
 
 
-alias pwd-win="cygpath -w $(pwd)"
+pwd-win() { cygpath -w "$(pwd)"; }
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
 alias firefox-no-cors='"C:\Program Files\Mozilla Firefox\firefox.exe" --disable-web-security'
 alias edit-hosts='powershell -Command "Start-Process \"C:\Program Files\Sublime Text\sublime_text.exe\" -ArgumentList \"C:\Windows\System32\drivers\etc\hosts\" -Verb RunAs"'
