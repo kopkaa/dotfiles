@@ -1,7 +1,8 @@
 export TERM=cygwin
 DIR="$(dirname "$(readlink ~/.bashrc)")"
 
-for file in "$DIR"/.{aliases,functions}; do
+# Source shared layer first, then git-bash-specific overrides.
+for file in "$DIR"/../shared/.{aliases,functions} "$DIR"/.{aliases,functions}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
@@ -28,7 +29,6 @@ myhelp() {
 
   echo -e "\n\e[1;32mProjects:\e[0m"
   printf "  %-18s -> %s\n" "iw:help"        "Show IceWarp project aliases"
-  printf "  %-18s -> %s\n" "repilot:help"   "Show Repilot project aliases"
 
   echo
 }
@@ -38,14 +38,6 @@ iw:help() {
   printf "  %-18s -> %s\n" "iw:compose"     "Start IceWarp Docker Compose"
   printf "  %-18s -> %s\n" "iw:api"         "Start IceWarp API service"
   printf "  %-18s -> %s\n" "iw:mergeapi"    "Generate public api def and move to api service"
-  echo
-}
-
-repilot:help() {
-  echo -e "\n\e[1;32mRepilot:\e[0m"
-  printf "  %-18s -> %s\n" "repilot:dev"      "cd to Repilot frontend and run dev"
-  printf "  %-18s -> %s\n" "repilot:generate" "Generate translations for Repilot"
-  printf "  %-18s -> %s\n" "repilot:logs"     "Tail PHP container logs (errors highlighted)"
   echo
 }
 

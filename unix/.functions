@@ -1,3 +1,14 @@
-function mkd () {
-     mkdir "$1" && cd "$1"
- }
+# Show the active WiFi SSID and PSK via NetworkManager.
+# Requires `nmcli`; PSK lookup uses sudo to read system-stored secrets.
+wifi-info() {
+    local ssid
+    ssid="$(nmcli -t -f active,ssid dev wifi 2>/dev/null | awk -F: '$1=="yes"{print $2; exit}')"
+    if [[ -z "$ssid" ]]; then
+        echo "No active WiFi connection." >&2
+        return 1
+    fi
+    local psk
+    psk="$(sudo nmcli -s -g 802-11-wireless-security.psk connection show "$ssid" 2>/dev/null)"
+    printf 'SSID:     %s\n' "$ssid"
+    printf 'Password: %s\n' "${psk:-<none>}"
+}

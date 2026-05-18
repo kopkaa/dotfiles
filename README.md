@@ -12,9 +12,13 @@ dotfiles/
 ├── .wslconfig             WSL2 resource limits
 ├── .windows-terminal.json Windows Terminal profiles
 ├── claude/                Claude Code config (CLAUDE.md, settings, statusline, commands)
-├── git-bash/              .bashrc, .aliases, .functions for Git Bash on Windows
-└── unix/                  .zshrc, .aliases, .functions for macOS / Linux / WSL
+├── shared/                .aliases + .functions sourced by BOTH shells
+├── git-bash/              .bashrc + git-bash-only .aliases / .functions (Windows paths, Cygwin tools)
+└── unix/                  .zshrc + linux-only .aliases / .functions (NetworkManager, etc.)
 ```
+
+Both rc files source `shared/` first, then their platform-specific siblings —
+so a platform file can intentionally override a shared definition (last write wins).
 
 ## Install
 
@@ -40,8 +44,8 @@ New-Item -ItemType SymbolicLink -Path "$HOME\.claude\statusline-command.sh" -Tar
 New-Item -ItemType SymbolicLink -Path "$HOME\.claude\commands"              -Target "$REPO\claude\commands"
 ```
 
-`.bashrc` auto-sources `.aliases` and `.functions` from the same directory by
-resolving its own symlink — no extra wiring needed.
+`.bashrc` resolves its own symlink, then sources `../shared/.{aliases,functions}`
+followed by the sibling `git-bash/.{aliases,functions}` — no extra wiring needed.
 
 ### macOS / Linux / WSL
 
@@ -68,26 +72,38 @@ ln -s "$REPO/claude/commands"              "$HOME/.claude/commands"
 Run `myhelp` in a Git Bash shell to see the alias list at any time
 (also auto-printed on each new interactive shell).
 
+**Shared (both shells, `shared/`):**
+
 | Command | What it does |
 |---------|--------------|
-| `myhelp` | Print the aliases table |
 | `pr` | `cd ~/Documents/Projects` |
 | `gc` | `git checkout` |
 | `gundo` | Undo last commit, keep changes staged |
+| `gitmail` | Reset `user.email` to the personal address |
+| `ll`, `lt`, `df`, `..`, `count_files` | Small everyday quality-of-life aliases |
+| `mkd <dir>` | Create and cd into a directory |
+| `pg_dump_table <schema> <table>` | Dump one Postgres table to a dated `.sql` |
+| `fs [path]` | Total size of file or directory |
+| `tre [path]` | `tree` with hidden files, ignoring `.git` / `node_modules` |
+| `diff` | Overrides system diff with `git diff --no-index --color-words` |
+
+**Git Bash only (`git-bash/`):**
+
+| Command | What it does |
+|---------|--------------|
+| `myhelp` | Print the aliases table |
 | `pwd-win` | Print current dir as a Windows path (`cygpath -w`) |
-| `chrome-no-cors` | Launch Chrome with web security disabled |
+| `chrome-no-cors` / `firefox-no-cors` | Launch browser with web security disabled |
 | `edit-hosts` | Open `hosts` file in Sublime as admin |
+| `tree` | Plain `find\|sed` fallback rendering (real `tree` not always installed in Git Bash) |
 | `kube:dev2` / `kube:stage` / `kube:local` | Swap `KUBECONFIG` between contexts |
 | `iw:help` | List IceWarp project shortcuts (`iw:compose`, `iw:api`, `iw:mergeapi`) |
-| `repilot:help` | List Repilot project shortcuts (`repilot:dev`, `repilot:generate`, `repilot:logs`) |
 
-Functions available in Git Bash (`git-bash/.functions`):
+**Linux only (`unix/`):**
 
-- `mkd <dir>` — create and cd into a directory
-- `pg_dump_table <schema> <table>` — dump one Postgres table to a dated `.sql`
-- `fs [path]` — total size of file or directory
-- `tre [path]` — `tree` with hidden files, ignoring `.git` / `node_modules`
-- `diff` — overrides system diff with `git diff --no-index --color-words`
+| Command | What it does |
+|---------|--------------|
+| `wifi` | Print the active SSID and PSK via `nmcli` (prompts for sudo) |
 
 ## Per-machine overrides
 

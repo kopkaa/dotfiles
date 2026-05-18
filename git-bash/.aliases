@@ -1,39 +1,16 @@
 alias ls='ls -F --color=auto --show-control-chars'
-alias rm='rm -i'
-alias ll='ls -l -h'
-alias df="df -h"
-alias lt='ls --human-readable --size -1 -S --classify'
-alias count_files='find . -type f | wc -l'
 alias tree="find . -print | sed -e 's;[^/]*/;|--;g' -e 's;--|;  |;g'"
-alias pr="cd ~/Documents/Projects"
-alias ..="cd .."
 
-
-
-pwd-win() { cygpath -w "$(pwd)"; }
 alias chrome-no-cors='"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\chrome_dev"'
 alias firefox-no-cors='"C:\Program Files\Mozilla Firefox\firefox.exe" --disable-web-security'
 alias edit-hosts='powershell -Command "Start-Process \"C:\Program Files\Sublime Text\sublime_text.exe\" -ArgumentList \"C:\Windows\System32\drivers\etc\hosts\" -Verb RunAs"'
 
-#---------------------------------------Git-----------------------------------------------#
-alias gc="git checkout"
-alias gundo="git reset HEAD~1 --mixed"
-alias gitmail='git config user.email "kopkayan@outlook.cz"'
-
-
-#----------------------------------------ICEWARP----------------------------------------------#
-alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
-alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
-alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm run merge && mv merged.yaml ../api-service'
-
-
+#----------------------------------------Kubernetes----------------------------------------#
 alias kube:dev2='export KUBECONFIG=~/.kube/dev2-config.yaml && kubectl config current-context'
 alias kube:stage='export KUBECONFIG=~/.kube/stage-config.yaml && kubectl config current-context'
 alias kube:local='unset KUBECONFIG && kubectl config current-context'
 
-
-
-#----------------------------------------Repilot----------------------------------------------#
-alias repilot:dev="cd /c/Users/janxh/Documents/Projects/sites/repilot && npm run dev"
-alias repilot:generate="docker exec -it repilot-php-1 php artisan lingua:generate"
-alias repilot:logs='docker compose exec php tail -f //code/storage/logs/laravel.log | grep --color=always -E "ERROR|$"'
+#----------------------------------------ICEWARP-------------------------------------------#
+alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
+alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
+alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm run merge && mv merged.yaml ../api-service'

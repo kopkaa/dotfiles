@@ -1,0 +1,40 @@
+# Create a new directory and enter it.
+mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
+# Dump a single Postgres table to a dated .sql file.
+pg_dump_table() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Usage: pg_dump_table <schema_name> <table_name>"
+        return 1
+    fi
+    pg_dump -U postgres -t "${1}.${2}" > "${1}_$(date +"%Y-%m-%d")_${2}.sql"
+}
+
+# Determine size of a file or total size of a directory.
+fs() {
+    local arg
+    if du -b /dev/null > /dev/null 2>&1; then
+        arg=-sbh
+    else
+        arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* ./*
+    fi
+}
+
+# Colored git diff for arbitrary paths (works outside a repo).
+if hash git &>/dev/null; then
+    diff() {
+        git diff --no-index --color-words "$@"
+    }
+fi
+
+# `tre`: tree with hidden files, ignoring noise dirs, piped through less.
+tre() {
+    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
+}
