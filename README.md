@@ -14,7 +14,7 @@ dotfiles/
 ├── claude/                Claude Code config (CLAUDE.md, settings, statusline, commands)
 ├── shared/                .aliases + .functions sourced by BOTH shells
 ├── git-bash/              .bashrc + git-bash-only .aliases / .functions (Windows paths, Cygwin tools)
-└── unix/                  .zshrc + linux-only .aliases / .functions (NetworkManager, etc.)
+└── unix/                  .zshrc + linux-only .settings / .aliases / .functions (NetworkManager, etc.)
 ```
 
 Both rc files source `shared/` first, then their platform-specific siblings —

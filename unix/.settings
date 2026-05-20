@@ -1,0 +1,24 @@
+# zsh shell options — sourced by unix/.zshrc *after* oh-my-zsh, so these win
+# over omz's lib/history.zsh defaults. zsh-only syntax (setopt); not for bash.
+
+#---------------------------------------History---------------------------------------#
+HISTFILE="$HOME/.zsh_history"   # where history is persisted
+HISTSIZE=10000                  # entries kept in memory for the running shell
+SAVEHIST=10000                  # entries written to HISTFILE on disk
+
+setopt EXTENDED_HISTORY         # record timestamp + duration per entry
+setopt HIST_IGNORE_ALL_DUPS     # drop older duplicate when a command repeats
+setopt HIST_IGNORE_SPACE        # skip commands typed with a leading space
+setopt HIST_REDUCE_BLANKS       # collapse superfluous whitespace before saving
+setopt HIST_VERIFY              # show !-expansion result before running it
+setopt HIST_EXPIRE_DUPS_FIRST   # when trimming history, evict duplicates first
+setopt SHARE_HISTORY            # live-share history across running sessions
+                                # (implies INC_APPEND_HISTORY — no need to set it)
+
+#----------------------------------Quality of life------------------------------------#
+setopt AUTO_CD                  # bare directory name == `cd` into it
+setopt AUTO_PUSHD               # every cd pushes onto the dir stack (`cd -<TAB>`)
+setopt PUSHD_IGNORE_DUPS        # keep the dir stack free of duplicate entries
+setopt INTERACTIVE_COMMENTS     # allow `# comments` at an interactive prompt
+setopt EXTENDED_GLOB            # enable ^, ~, #-prefixed glob operators
+unsetopt BEEP                   # silence the terminal bell
