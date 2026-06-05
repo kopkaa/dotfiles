@@ -29,6 +29,7 @@ myhelp() {
 
   echo -e "\n\e[1;32mProjects:\e[0m"
   printf "  %-18s -> %s\n" "iw:help"        "Show IceWarp project aliases"
+  printf "  %-18s -> %s\n" "is:help"        "Show internal-services aliases"
 
   echo
 }

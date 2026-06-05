@@ -14,3 +14,26 @@ alias kube:local='unset KUBECONFIG && kubectl config current-context'
 alias iw:compose="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && docker compose up"
 alias iw:api="cd /c/Users/janxh/Documents/Projects/icewarp/api-service && npm run dev"
 alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm run merge && mv merged.yaml ../api-service'
+
+#----------------------------ICEWARP internal-services (platform monorepo)-----------------#
+# pnpm + Lerna monorepo. $IS_DIR is the repo root; exported so the is:* functions
+# in .functions resolve it too, regardless of which file is sourced first.
+export IS_DIR="/c/Users/janxh/Documents/Projects/icewarp/internal-services"
+
+alias is='cd "$IS_DIR"'                                         # jump to the repo root
+
+# --- Local dev stacks (docker compose, one file per concern; see package.json) ---
+alias is:up='cd "$IS_DIR" && pnpm start'                        # db + elk + icewarp + external + services
+alias is:db='cd "$IS_DIR" && pnpm start:db'                     # Postgres / CockroachDB / Redis only
+alias is:elk='cd "$IS_DIR" && pnpm start:elk'                   # OpenSearch + FluentBit + Dashboards
+alias is:svc='cd "$IS_DIR" && pnpm start:services'             # the microservices (docker-compose.yaml)
+alias is:ps='cd "$IS_DIR" && docker compose ps'                # what's currently running
+
+# --- Monorepo / CI helpers (mirror the GitLab pipeline locally) ---
+alias is:changed='cd "$IS_DIR" && pnpm build:test:getChanged'  # packages changed vs master (+ dependents)
+alias is:list='cd "$IS_DIR" && pnpm list'                      # lerna list of all workspaces
+alias is:ports='cd "$IS_DIR" && pnpm print:ports'              # port map across services
+alias is:test='cd "$IS_DIR" && pnpm build:test:runTests'       # unit tests for changed packages
+
+# --- Kubernetes (dev2 preview namespace) — run `kube:dev2` first to point KUBECONFIG ---
+alias is:pods='kubectl get pods -n icewarp-dashboard-dev2'     # pods in the dev2 namespace

@@ -2,3 +2,63 @@
 pwd-win() {
     cygpath -w "$(pwd)"
 }
+
+#----------------------------ICEWARP internal-services helpers------------------------------#
+# These take arguments (or change config), so they're functions rather than aliases.
+# All wrap their `cd` in a subshell so your current directory is left untouched.
+
+# Follow logs for one (or more) compose service(s):  is:logs api  /  is:logs identity oauth-service
+is:logs() {
+    ( cd "$IS_DIR" && docker compose logs -f "$@" )
+}
+
+# Tear down every local stack. All compose files share one project name (the repo
+# dir), so passing every -f gives docker the full set of containers to remove.
+# Extra args pass through, e.g. `is:down -v` to also drop volumes.
+is:down() {
+    ( cd "$IS_DIR" && docker compose \
+        -f docker-compose.yaml \
+        -f compose.db.yaml \
+        -f compose.elk.yaml \
+        -f compose.icewarp.yaml \
+        -f compose.external.yaml \
+        down "$@" )
+}
+
+# kubectl pinned to the dev2 namespace:  is:k get deploy  /  is:k describe pod <name>
+is:k() {
+    kubectl -n icewarp-dashboard-dev2 "$@"
+}
+
+# Follow a deployment's logs in dev2:  is:klog identity  /  is:klog oauth-service
+is:klog() {
+    kubectl -n icewarp-dashboard-dev2 logs -f "deploy/$1"
+}
+
+# Force a publish when the last real change was swallowed by the package.json/lock
+# loop-guard in CI (see CLAUDE.md). Empty commit, no file changes.
+is:trigger() {
+    ( cd "$IS_DIR" && git commit --allow-empty -m "chore: trigger publish" )
+}
+
+# List the internal-services shortcuts (companion to iw:help).
+is:help() {
+    echo -e "\n\e[1;32mIceWarp internal-services:\e[0m"
+    printf "  %-14s -> %s\n" "is"          "cd to the repo root"
+    printf "  %-14s -> %s\n" "is:up"       "Start full local stack (db+elk+icewarp+external+services)"
+    printf "  %-14s -> %s\n" "is:db"       "Start databases only"
+    printf "  %-14s -> %s\n" "is:elk"      "Start OpenSearch stack"
+    printf "  %-14s -> %s\n" "is:svc"      "Start the microservices"
+    printf "  %-14s -> %s\n" "is:ps"       "docker compose ps"
+    printf "  %-14s -> %s\n" "is:logs <s>" "Follow logs for a compose service"
+    printf "  %-14s -> %s\n" "is:down"     "Tear down every local stack (-v to drop volumes)"
+    printf "  %-14s -> %s\n" "is:changed"  "Packages changed vs master (+ dependents)"
+    printf "  %-14s -> %s\n" "is:list"     "lerna list of workspaces"
+    printf "  %-14s -> %s\n" "is:ports"    "Port map across services"
+    printf "  %-14s -> %s\n" "is:test"     "Unit tests for changed packages"
+    printf "  %-14s -> %s\n" "is:trigger"  "Empty commit to force a publish"
+    printf "  %-14s -> %s\n" "is:pods"     "kubectl get pods (dev2 ns)"
+    printf "  %-14s -> %s\n" "is:k <args>" "kubectl pinned to dev2 ns"
+    printf "  %-14s -> %s\n" "is:klog <d>" "Follow a deployment's logs (dev2)"
+    echo
+}
