@@ -2,6 +2,12 @@
 	name = Jan Hromadka
 	email = jan.hromadka@outlook.com
 
+[push]
+	default = current
+
+[init]
+	defaultBranch = main
+
 # Per-machine overrides (e.g. work email). File may not exist — git ignores silently.
 [include]
 	path = ~/.gitconfig.local
