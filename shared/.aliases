@@ -9,4 +9,4 @@ alias pr="cd ~/Documents/Projects"
 #---------------------------------------Git-----------------------------------------------#
 alias gc="git checkout"
 alias gundo="git reset HEAD~1 --mixed"
-alias gitmail='git config user.email "kopkayan@outlook.cz"'
+alias gitmail='git config user.email "jan.hromadka@outlook.com"'
