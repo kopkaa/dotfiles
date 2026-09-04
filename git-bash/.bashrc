@@ -39,6 +39,7 @@ iw:help() {
   printf "  %-18s -> %s\n" "iw:compose"     "Start IceWarp Docker Compose"
   printf "  %-18s -> %s\n" "iw:api"         "Start IceWarp API service"
   printf "  %-18s -> %s\n" "iw:mergeapi"    "Generate public api def and move to api service"
+  printf "  %-18s -> %s\n" "iw:postman"     "Run a Postman collection [env] [collection]"
   echo
 }
 

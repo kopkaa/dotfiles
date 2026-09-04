@@ -20,6 +20,10 @@ alias iw:mergeapi='cd ~/Documents/Projects/icewarp/public-api-definition && npm 
 # in .functions resolve it too, regardless of which file is sourced first.
 export IS_DIR="/c/Users/janxh/Documents/Projects/icewarp/internal-services"
 
+# Workspace root (not a git repo). $IW_DIR is where the Postman collections live,
+# outside any repo so a filled-in password cannot be pushed by accident.
+export IW_DIR="/c/Users/janxh/Documents/Projects/icewarp"
+
 alias is='cd "$IS_DIR"'                                         # jump to the repo root
 
 # --- Local dev stacks (docker compose, one file per concern; see package.json) ---

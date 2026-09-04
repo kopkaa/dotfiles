@@ -41,7 +41,104 @@ is:trigger() {
     ( cd "$IS_DIR" && git commit --allow-empty -m "chore: trigger publish" )
 }
 
+# Mint a teamchat dev JWT and print ONLY the token (stderr info is suppressed).
+# Default identity is the seeded dev owner; override:  is:token <identityId> <email>
+#   TOKEN=$(is:token)
+#   curl -H "Authorization: Bearer $(is:token)" http://localhost:3012/v3/team_chat_room/<id>/team_chat_message
+is:token() {
+    ( cd "$IS_DIR/packages/teamchat-domain-service" && node scripts/dev-token.cjs "$@" 2>/dev/null )
+}
+
 # List the internal-services shortcuts (companion to iw:help).
+# Run a Postman collection against a deployed api-service, asking for what it needs.
+# Nothing is stored: the password lives in the newman process and nowhere else, which
+# is why the committed environment files keep `password` empty.
+#
+#   iw:postman                                 # pick everything interactively
+#   iw:postman stage1-v1                       # skip the environment prompt
+#   iw:postman stage1-v1 openai-settings       # skip both prompts
+#   iw:postman stage1-v1 --verbose             # a leading - is a newman flag, not a collection
+iw:postman() {
+    local dir="$IW_DIR/postman"
+    local env="$1" collection env_file email pass
+
+    if [ ! -d "$dir" ]; then
+        echo "No collections in $dir" >&2
+        return 1
+    fi
+
+    # $2 is the collection unless it looks like a flag, so `iw:postman <env> --verbose`
+    # keeps meaning what it used to. Everything after it goes to newman untouched.
+    local -a passthru=( "${@:2}" )
+    case "$2" in
+        ""|-*) ;;
+        *) collection="$2"; passthru=( "${@:3}" ) ;;
+    esac
+
+    if [ -z "$env" ]; then
+        echo "Environments:"
+        ( cd "$dir" && ls -1 *.postman_environment.json 2>/dev/null | sed 's/\.postman_environment\.json$//; s/^/  /' )
+        read -r -p "env: " env
+    fi
+
+    env_file="$dir/$env.postman_environment.json"
+    if [ ! -f "$env_file" ]; then
+        echo "No such environment: $env" >&2
+        return 1
+    fi
+
+    local -a collections=()
+    while IFS= read -r c; do collections+=("$c"); done < <( cd "$dir" && ls -1 *.postman_collection.json 2>/dev/null )
+    if [ "${#collections[@]}" -eq 0 ]; then
+        echo "No collection found in $dir" >&2
+        return 1
+    fi
+
+    # Not named on the command line: one collection is taken without asking, more than
+    # one and you choose.
+    if [ -z "$collection" ]; then
+        if [ "${#collections[@]}" -eq 1 ]; then
+            collection="${collections[0]}"
+        else
+            echo "Collections:"
+            printf '  %s\n' "${collections[@]%.postman_collection.json}"
+            read -r -p "collection: " collection
+        fi
+    fi
+
+    # Both `openai-settings` and the full filename that tab completion gives.
+    collection="${collection%.postman_collection.json}.postman_collection.json"
+    if [ ! -f "$dir/$collection" ]; then
+        echo "No such collection: ${collection%.postman_collection.json}" >&2
+        printf '  %s\n' "${collections[@]%.postman_collection.json}" >&2
+        return 1
+    fi
+
+    read -r -p "email: " email
+    # -s so the password never reaches the scrollback or ~/.bash_history.
+    read -r -s -p "password: " pass
+    echo
+
+    if [ -z "$email" ] || [ -z "$pass" ]; then
+        echo "email and password are both required" >&2
+        return 1
+    fi
+
+    echo
+    echo "-> $collection on $env"
+    # `command` sidesteps the mintty winpty alias, which mangles these wrappers.
+    # newman has NO request timeout by default: a request that never answers spins
+    # forever instead of failing, which reads as "postman is broken" rather than
+    # "the endpoint did not respond". Extra args pass through, e.g. --verbose.
+    command npx newman run "$dir/$collection" \
+        -e "$env_file" \
+        --env-var email="$email" \
+        --env-var password="$pass" \
+        --timeout-request 30000 \
+        --timeout-script 10000 \
+        "${passthru[@]}"
+}
+
 is:help() {
     echo -e "\n\e[1;32mIceWarp internal-services:\e[0m"
     printf "  %-14s -> %s\n" "is"          "cd to the repo root"
@@ -57,8 +154,12 @@ is:help() {
     printf "  %-14s -> %s\n" "is:ports"    "Port map across services"
     printf "  %-14s -> %s\n" "is:test"     "Unit tests for changed packages"
     printf "  %-14s -> %s\n" "is:trigger"  "Empty commit to force a publish"
+    printf "  %-14s -> %s\n" "is:token"    "Print a teamchat dev JWT (override: <identityId> <email>)"
     printf "  %-14s -> %s\n" "is:pods"     "kubectl get pods (dev2 ns)"
     printf "  %-14s -> %s\n" "is:k <args>" "kubectl pinned to dev2 ns"
     printf "  %-14s -> %s\n" "is:klog <d>" "Follow a deployment's logs (dev2)"
+
+    echo -e "\e[1;32mIceWarp api-service:\e[0m"
+    printf "  %-14s -> %s\n" "iw:postman"  "Run a collection: iw:postman [env] [collection] [newman args]"
     echo
 }
