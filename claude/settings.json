@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(curl -s \"http://localhost:3000/graphql\" -H \"Content-Type: application/json\" -d '{\"query\":\"{ teams { triCode conferenceName divisionName } }\"}')",
@@ -117,5 +120,46 @@
   },
   "effortLevel": "high",
   "autoUpdatesChannel": "latest",
-  "theme": "auto"
+  "theme": "auto",
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: AWS S3-compatible object storage (via config/portfolio_storage.php, config/document_storage.php) and Cloudflare R2 — inferred from .env.example (AWS_*, R2_* vars); no cloud CLI usage observed",
+      "**Repository visibility**: Not queryable here (gh lookup unavailable — origin is a self-hosted GitLab host, not a plain owner/repo GitHub shape). Assume private per shipped default, since gitlab.centario.cz is a private/internal-looking host",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: Local .env files (never committed — see .gitignore: .env, .env.backup, .env.production, .gitlab-token, /storage/*.key); GitLab token read from env GITLAB_TOKEN, .gitlab-token, or ~/.gitlab-token per CLAUDE.md",
+      "**Default / protected branches**: develop (default branch per repo facts); CLAUDE.md documents pre-push review hooks skipped for main, master, develop — branch protection status itself not queryable via gh here",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (ssh://gitlab.centario.cz:2222/repilot/app.git) and its remote(s) only — as scoped by Trusted repo and Repository visibility entries above",
+      "**Trusted internal domains**: gitlab.centario.cz (self-hosted GitLab remote host, and top contacted host in usage — 31×)",
+      "**Trusted cloud buckets**: repilot-templates (config-derived — not a confirmed upload destination; uploads of local data still require confirmation)",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: .env, .env.example, .env.testing, .envrc, _docker/nginx/default.prod.conf, config/userback.php, docker-compose.prod.yml, /storage/*.key — any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries prod or production as a whole word or name segment (e.g. .env.production, docker-compose.prod.yml, _docker/nginx/default.prod.conf)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (Laravel 12 / Vue 3 web application, repilot/app)",
+      "**Trusted repo**: /home/jankopka/Projects/repilot (working directory) and its remote ssh://gitlab.centario.cz:2222/repilot/app.git",
+      "**Org-specific CLIs**: None configured",
+      "routine under repilot/ prefix: docker compose exec php / nodejs commands for artisan, composer, npm/yarn scripts as documented in CLAUDE.md"
+    ],
+    "allow": [
+      "$defaults",
+      "Bash(docker compose exec php composer test:*)",
+      "Bash(docker compose exec php vendor/bin/phpunit:*)",
+      "Bash(docker compose exec nodejs yarn test:*)",
+      "Bash(docker compose exec php composer cs:*)",
+      "Bash(docker compose exec php composer phpstan:*)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(docker compose down -v:*)",
+      "Bash(docker compose exec db mysql:*)"
+    ]
+  }
 }
