@@ -18,7 +18,6 @@ myhelp() {
   printf "  %-18s -> %s\n" "chrome-no-cors" "Start chrome without cors"
   printf "  %-18s -> %s\n" "gc"             "git checkout"
   printf "  %-18s -> %s\n" "gundo"          "Undo last commit (keep changes staged)"
-  printf "  %-18s -> %s\n" "pr"             "cd ~/Documents/Projects"
   printf "  %-18s -> %s\n" "edit-hosts"     "Open hosts file in Sublime as admin"
   printf "  %-18s -> %s\n" "pwd-win"        "Print current dir as Windows path"
 

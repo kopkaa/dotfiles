@@ -76,7 +76,6 @@ Run `myhelp` in a Git Bash shell to see the alias list at any time
 
 | Command | What it does |
 |---------|--------------|
-| `pr` | `cd ~/Documents/Projects` |
 | `gc` | `git checkout` |
 | `gundo` | Undo last commit, keep changes staged |
 | `gitmail` | Reset `user.email` to the personal address |
@@ -156,6 +155,7 @@ shared one.
 # ~/.zshrc.local
 export WORK_LAPTOP=1
 alias vpn='sudo openconnect vpn.employer.com'
+alias pr='cd ~/Projects'   # project root differs per host
 ```
 
 The `*.local` files are **not tracked** — they live only in `$HOME` on each
